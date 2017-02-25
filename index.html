@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Psychic Game (Easy)</title>
+</head>
+<body>
+<H1>The Psychic Game</H1>
+
+<div id="game">
+	<p>Guess what letter I'm thinking of</p>
+</div>
+<div id="currentGuess"></div>
+
+<script type="text/javascript">
+	
+
+// Capture those choices
+// user and computer selections are compared to determine a win or a loss
+// Display the result to the user
+
+	var wins = 0;
+	var losses = 0;
+	var guessLeft = 9;
+	var wrongGuess = " ";
+	var options = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+	// var options = String.fromCharCode(Math.floor((Math.random()*122)+97));
+
+// User makes a choice
+	document.onkeyup = function() {
+		var userGuess = String.fromCharCode(event.keyCode).
+			toLowerCase();
+		console.log(userGuess);
+		document.userGuess
+
+// computer makes a random selection
+		// var compGuess = String.fromCharCode((Math.floor(Math.random()*122))+97);
+		// 	console.log(compGuess);
+		var compGuess = options[Math.floor(Math.random()*options.length)];
+		console.log(compGuess);		
+
+		
+		if (userGuess===compGuess) {
+			wins++;
+			// alert("Wins: " + wins);
+		} else{
+			guessLeft--;
+			// alert("Losses: " + losses);
+	};
+		if (guessLeft === 0){
+			losses++;
+			function resetFunc() {
+			document.querySelector("guessLeft").reset();			
+		}
+	}
+		
+
+		var html = "<p>Guess what letter I\'m thinking of</p>" +
+		"<p>Wins: "+ wins + "</p>" +
+		"<p>Losses: " + losses + "</p>" +
+		"<p>Guesses Left: " + guessLeft +"</p>"; 
+		// +
+		// "<p>Your Guesses so far: " + userGuess + "</p>";
+		document.querySelector("#currentGuess").innerHTML = userGuess;
+		document.querySelector("#game").innerHTML= html;
+	}
+
+
+</script>
+
+
+</body>
+</html>
